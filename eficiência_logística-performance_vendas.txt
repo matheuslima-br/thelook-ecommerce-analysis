@@ -1,0 +1,98 @@
+-- Análise: Eficiência logística + Performance de vendas
+-- Área: Logística e Vendas
+--
+-- Objetivo:
+-- Identificar o tempo médio de entrega de cada centro de
+-- distribuição e o produto com maior volume de vendas dentro
+-- de cada centro, incluindo a receita gerada.
+--
+-- Indicadores:
+-- - Tempo médio de entrega por centro de distribuição
+-- - Produto mais vendido por centro
+-- - Quantidade vendida
+-- - Receita gerada
+
+WITH produtos_centro AS (
+
+    SELECT
+
+        dc.name AS centro_distribuicao,
+
+        p.name AS produto,
+
+        -- Quantidade de itens vendidos do produto
+        COUNT(oi.id) AS quantidade_vendida,
+
+        -- Receita gerada pelo produto
+        ROUND(SUM(oi.sale_price),2) AS receita_gerada,
+
+        -- Ranking dos produtos dentro de cada centro
+        ROW_NUMBER() OVER(
+            PARTITION BY dc.name
+            ORDER BY COUNT(oi.id) DESC
+        ) AS ranking_produto
+
+    FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+
+    JOIN `bigquery-public-data.thelook_ecommerce.products` p
+    ON oi.product_id = p.id
+
+    JOIN `bigquery-public-data.thelook_ecommerce.distribution_centers` dc
+    ON p.distribution_center_id = dc.id
+
+    GROUP BY
+        dc.name,
+        p.name
+),
+
+tempo_entrega AS (
+
+    SELECT
+
+        dc.name AS centro_distribuicao,
+
+        ROUND(
+            AVG(
+                DATE_DIFF(
+                    DATE(oi.delivered_at),
+                    DATE(oi.shipped_at),
+                    DAY
+                )
+            ),
+            2
+        ) AS tempo_medio_entrega_dias
+
+    FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+
+    JOIN `bigquery-public-data.thelook_ecommerce.products` p
+    ON oi.product_id = p.id
+
+    JOIN `bigquery-public-data.thelook_ecommerce.distribution_centers` dc
+    ON p.distribution_center_id = dc.id
+
+    WHERE oi.delivered_at IS NOT NULL
+    AND oi.shipped_at IS NOT NULL
+
+    GROUP BY dc.name
+)
+
+SELECT
+
+    t.centro_distribuicao,
+
+    t.tempo_medio_entrega_dias,
+
+    p.produto AS produto_mais_vendido,
+
+    p.quantidade_vendida,
+
+    p.receita_gerada
+
+FROM tempo_entrega t
+
+JOIN produtos_centro p
+ON t.centro_distribuicao = p.centro_distribuicao
+
+WHERE p.ranking_produto = 1
+
+ORDER BY t.tempo_medio_entrega_dias;

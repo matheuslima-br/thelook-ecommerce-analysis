@@ -1,0 +1,31 @@
+-- Análise: Tempo médio de entrega dos pedidos
+-- Área: Logística / Experiência do Cliente
+--
+-- Objetivo:
+-- Calcular o tempo médio em dias que os pedidos levam
+-- entre a data de envio e a data de entrega ao cliente.
+--
+-- Campos utilizados:
+-- - Data de envio (shipped_at)
+-- - Data de entrega (delivered_at)
+--
+-- Regra:
+-- Considera apenas pedidos que possuem as duas datas preenchidas.
+SELECT
+    -- Calcula a diferença em dias entre envio e entrega,
+    -- depois calcula a média dos pedidos e arredonda para 2 casas decimais
+    ROUND(
+        AVG(
+            DATE_DIFF(
+                DATE(delivered_at),
+                DATE(shipped_at),
+                DAY
+            )
+        ),
+        2
+    ) AS tempo_medio_entrega_dias
+
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+-- Considera somente pedidos que foram enviados e entregues
+WHERE delivered_at IS NOT NULL
+AND shipped_at IS NOT NULL;

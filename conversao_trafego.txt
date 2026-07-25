@@ -1,0 +1,26 @@
+-- Análise: Conversão por fonte de tráfego
+--
+-- Área:
+-- Marketing + Vendas
+--
+-- Objetivo:
+-- Comparar o volume de eventos e compras por canal de aquisição.
+
+SELECT
+
+    traffic_source,
+
+    COUNT(*) AS total_eventos,
+
+    COUNTIF(event_type = 'purchase') AS compras,
+
+    ROUND(
+        100 * COUNTIF(event_type = 'purchase') / COUNT(*),
+        2
+    ) AS taxa_conversao
+
+FROM `bigquery-public-data.thelook_ecommerce.events`
+
+GROUP BY traffic_source
+
+ORDER BY compras DESC;

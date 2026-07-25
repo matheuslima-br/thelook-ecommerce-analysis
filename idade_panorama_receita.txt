@@ -1,0 +1,58 @@
+-- Análise: Receita por faixa etária
+--
+-- Área:
+-- Clientes + Vendas
+--
+-- Objetivo:
+-- Identificar o comportamento de compra das diferentes
+-- faixas etárias, avaliando o faturamento gerado, a
+-- quantidade de clientes, pedidos, ticket médio e a
+-- participação de cada faixa na receita total.
+--
+-- Indicadores:
+-- - Quantidade de clientes
+-- - Quantidade de pedidos
+-- - Receita total
+-- - Ticket médio
+-- - Percentual da receita total
+
+SELECT
+
+    -- Classificação da idade em faixas
+    CASE
+        WHEN u.age < 25 THEN '18 a 24 anos'
+        WHEN u.age BETWEEN 25 AND 34 THEN '25 a 34 anos'
+        WHEN u.age BETWEEN 35 AND 44 THEN '35 a 44 anos'
+        WHEN u.age BETWEEN 45 AND 54 THEN '45 a 54 anos'
+        ELSE '55 anos ou mais'
+    END AS faixa_etaria,
+
+    -- Quantidade de clientes
+    COUNT(DISTINCT u.id) AS clientes,
+
+    -- Quantidade de pedidos
+    COUNT(DISTINCT oi.order_id) AS pedidos,
+
+    -- Receita total
+    ROUND(SUM(oi.sale_price), 2) AS receita_total,
+
+    -- Ticket médio
+    ROUND(
+        SUM(oi.sale_price) / COUNT(DISTINCT oi.order_id),
+        2
+    ) AS ticket_medio,
+
+    -- Participação da faixa etária na receita total
+    ROUND(
+        100 * SUM(oi.sale_price) / SUM(SUM(oi.sale_price)) OVER (),
+        2
+    ) AS percentual_receita_total
+
+FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+
+JOIN `bigquery-public-data.thelook_ecommerce.users` u
+ON oi.user_id = u.id
+
+GROUP BY faixa_etaria
+
+ORDER BY receita_total DESC;
