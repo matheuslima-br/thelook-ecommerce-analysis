@@ -21,10 +21,15 @@ SQL
 Consultas desenvolvidas para responder perguntas de negócio.
 
 Receita por faixa etária
+
 Receita e devoluções por categoria
+
 Tempo médio de entrega
+
 Conversão por origem de tráfego
+
 Eficiência dos centros de distribuição
+
 Dashboard
 
 O dashboard foi dividido em duas páginas:
@@ -50,15 +55,23 @@ Total Pedidos,
 Nome do produto
 
 Principais Insights
+
 A faixa etária de 55 anos ou mais representa 26,49% da receita total.
+
 A categoria Outerwear & Coats apresentou o maior impacto financeiro em devoluções.
+
 O centro de distribuição Philadelphia (PA) apresentou o menor tempo médio de entrega aliado ao maior volume de vendas.
+
 O canal Organic apresentou a maior taxa de conversão.
 
 Recomendações
+
 Investir em ações de fidelização para clientes com 55 anos ou mais.
+
 Revisar produtos com maior impacto financeiro em devoluções.
+
 Replicar processos logísticos do centro Philadelphia.
+
 Fortalecer estratégias de aquisição por tráfego orgânico.
 
 Modelagem
