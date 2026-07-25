@@ -1,6 +1,6 @@
 # thelook-ecommerce-analysis
 
-Objetivo
+## Objetivo
 
 Este projeto foi desenvolvido como parte de um teste técnico para uma vaga de Analista de Dados.
 
@@ -14,7 +14,7 @@ Atendimento
 
 Marketing
 
-Tecnologias utilizadas
+## Tecnologias utilizadas
 
 SQL (Google BigQuery)
 
@@ -29,7 +29,7 @@ Estrutura do Projeto
 SQL
 
 
-Consultas desenvolvidas para responder perguntas de negócio.
+## Consultas desenvolvidas para responder perguntas de negócio.
 
 Receita por faixa etária
 
@@ -42,7 +42,7 @@ Conversão por origem de tráfego
 Eficiência dos centros de distribuição
 
 
-Dashboard
+## Dashboard
 
 O dashboard foi dividido em duas páginas:
 
@@ -75,7 +75,7 @@ Total Pedidos,
 Nome do produto
 
 
-Principais Insights
+## Principais Insights
 
 A faixa etária de 55 anos ou mais representa 26,49% da receita total.
 
@@ -86,7 +86,7 @@ O centro de distribuição Philadelphia (PA) apresentou o menor tempo médio de 
 O canal Organic apresentou a maior taxa de conversão.
 
 
-Recomendações
+## Recomendações
 
 Investir em ações de fidelização para clientes com 55 anos ou mais.
 
