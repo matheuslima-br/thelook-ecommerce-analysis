@@ -65,12 +65,12 @@ Modelagem
 
 ## Modelo de Dados
 
-![Modelo](imagens/modelo_dados.png)
+![Modelo](Modelagem.png)
 
 Dashboard
 
 ## Dashboard
 
-![Dashboard Executivo](C:\Users\ml_gu\OneDrive\Imagens\Screenshots\Pag2.png)
+![Dashboard Executivo](Pag1.png)
 
-![Dashboard Operacional](C:\Users\ml_gu\OneDrive\Imagens\Screenshots\Pag2.png)
+![Dashboard Operacional](Pag2.png)
