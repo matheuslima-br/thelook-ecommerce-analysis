@@ -33,20 +33,20 @@ Página 1
 
 Visão Executiva contendo:
 
-Receita Total
-Pedidos
-Ticket Médio
-Receita por período
-Receita por categoria
-Receita por faixa etária
+Receita Total,
+Pedidos,
+Ticket Médio,
+Receita por período,
+Receita por categoria,
+Receita por faixa etária,
 
 Página 2
 
 Detalhamento operacional contendo:
 
-Tempo médio de entrega
-Taxa de devolução
-Total Pedidos
+Tempo médio de entrega,
+Taxa de devolução,
+Total Pedidos,
 Nome do produto
 
 Principais Insights
