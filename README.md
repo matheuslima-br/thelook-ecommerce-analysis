@@ -1,7 +1,5 @@
 # thelook-ecommerce-analysis
 
-## Objetivo
-
 Este projeto foi desenvolvido como parte de um teste técnico para uma vaga de Analista de Dados.
 
 O objetivo foi analisar dados públicos do dataset TheLook E-commerce, disponível no Google BigQuery, gerando insights relacionados às áreas de:
